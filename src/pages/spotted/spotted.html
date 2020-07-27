@@ -1,0 +1,86 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header no-border>
+  <ion-navbar transparent>
+      <h1 style="color:white;">Enviar</h1>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <br>
+    <div class="flex-container">
+    <form [formGroup]="spottedForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
+      <div class="signup-form animated fadeInRight">
+        <strong *ngIf="flagSolicitacao">Nome da matéria</strong>
+        <strong *ngIf="!flagSolicitacao">{{materia | uppercase}}</strong>
+        <ion-item *ngIf="flagSolicitacao" class="input-signup">
+         <br *ngIf="flagSolicitacao"  >
+          <ion-input *ngIf="flagSolicitacao" type="text" placeholder="Digite o nome da disciplina" formControlName="materia">
+          </ion-input>
+        </ion-item>
+        <br>
+        <strong *ngIf="flagSolicitacao">Nome do Professor(a)</strong>
+        <strong *ngIf="!flagSolicitacao">{{professor | capitalize }}</strong>
+        <br *ngIf="flagSolicitacao"  >
+        <ion-item *ngIf="flagSolicitacao" class="input-signup">
+          <ion-input *ngIf="flagSolicitacao" type="text" placeholder="Digite o nome do professor(a)" formControlName="professor">
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label>Nível de dificuldade da matéria</ion-label>
+          <ion-select formControlName="dificuldadeMateria" >
+            <ion-option value="Fácil">Fácil</ion-option>
+            <ion-option value="Médio">Médio</ion-option>
+            <ion-option value="Difícil">Difícil</ion-option>
+          </ion-select>
+        </ion-item>
+        <br>
+        <ion-item style="width: 100%">
+          <ion-label>Nível de dificuldade do professor</ion-label>
+          <ion-select formControlName="dificuldadeProfessor" >
+            <ion-option value="Fácil">Fácil</ion-option>
+            <ion-option value="Médio">Médio</ion-option>
+            <ion-option value="Difícil">Difícil</ion-option>
+          </ion-select>
+        </ion-item>
+        <br>
+        <strong>Conte suas experiências pessoais com a matéria</strong>
+        <br>
+        <ion-item class="input-signup">
+          <ion-textarea type="text" rows="4" formControlName="conteudo"></ion-textarea>
+        </ion-item>
+        <p>Forneça detalhes relevantes como qualidade da aula,materiais necessários,estilo de provas,listas,trabalhos,etc.</p>
+          <!-- cordova.js required for cordova apps 
+
+        <ion-item>
+          <ion-icon name="image" item-left></ion-icon>
+          <input type="file" accept="image/*" (change)="onPhoto($event)">
+        </ion-item>
+        <p>manda aquela foto!</p>
+        <progress-bar *ngIf="uploadProgress" [progress]="uploadProgress">
+        </progress-bar>
+          
+-->        <br>
+
+
+        <div class="button">
+          <button ion-button round class="signup-button" type="submit" [disabled]="spottedForm.invalid">Enviar</button>
+        </div>
+      </div>
+      <br>
+    </form>
+  
+    
+    <img   *ngIf ="srcPhoto" width="218" height="280" src="data:image/jpeg;base64,{{srcPhoto}}">
+    <br>
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="primary"
+      (click)="upFromGallery(0)"><ion-icon name="md-image"></ion-icon></button>
+  </ion-fab> 
+ </ion-content>

@@ -1,0 +1,70 @@
+page-chat {
+    ion-list{
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+     
+    .innerMessage{
+        display: inline-block;
+        background-color: #488aff;
+        border-radius: 12px;
+        padding: 10px;
+        width:60%;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .hide{
+        display: none;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .h2{
+        font-size : 15px;
+        margin-top: 0px;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+        
+      }
+      .message{
+        margin: 0px;
+        color:white;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .special .innerMessage{
+        background-color: #32db64;
+        float: right;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+    
+    
+      .message:after{
+        content:'';
+        display: block;
+        clear : both;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      p{
+        font-size:1.3em;
+        margin:0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+    }
+    p.timestamp{
+        font-size: 0.8em;
+        margin-top:5px;
+        color:#fff;
+        
+    }
+
+    }
+}

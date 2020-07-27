@@ -1,0 +1,283 @@
+
+<ion-header>
+ <custom-logged-header [title] = "view | capitalize : true"> </custom-logged-header>
+
+ <ion-toolbar>
+  <ion-segment [(ngModel)] = "view">
+      <ion-segment-button value = "feed">
+          <ion-icon  name="home" color="primary"></ion-icon>
+              </ion-segment-button>
+    <ion-segment-button value = "conversas">
+        <ion-icon  name="chatboxes" color="primary"></ion-icon>
+      </ion-segment-button>
+    <ion-segment-button value = "pessoas">
+        <ion-icon  name="people" color="primary"></ion-icon>
+      </ion-segment-button>
+  </ion-segment>
+  <ion-searchbar placeholder="Pesquisar"  (ionInput)="filterItems($event)">
+    </ion-searchbar>
+</ion-toolbar>
+            <!--toolbar
+
+<ion-toolbar>
+    <ion-searchbar  (ionInput)="filterItems($event)">
+    </ion-searchbar>
+      
+  </ion-toolbar>
+-->
+
+  </ion-header>
+ 
+  
+  <ion-content  elastic-header>  
+    <div style="background-color: white" [ngSwitch] = "view" >
+        <div *ngSwitchCase = "'feed'" background-size id="elastic-header" [ngStyle]="{'background-image': 'url(' + headerImage + ')'}">
+            <!--Parallax Header Top-->
+            <div parallax-header *ngSwitchCase = "'feed'" >
+              <!--Parallax Subtitle -->
+              <h2 no-margin parallax-subtitle *ngSwitchCase = "'feed'"></h2>
+              <!--Parallax Title -->
+              <h2 no-margin parallax-title *ngSwitchCase = "'feed'">mais recentes</h2>
+            </div>
+          </div>
+          
+    
+  <ion-list *ngSwitchCase="'feed'">
+    <div #stories id="stories"  padding=""></div>
+
+          
+      <!--     COMENTARIO
+        <div id="stories" *ngFor="let story of stories | async " padding class="stories user-icon carousel snapgram">
+  <div class="story" data-id="story.$key" data-photo="story.userPhoto" data-last-updated="story.timestamp">
+    <a>
+      <span class ="img">
+        <u style="background-image:url(story.photo)"></u>
+      </span>
+      <span class="info">
+        <strong>{{story.userNome}}</strong>
+        <span class="time">{{story.timestamp}}</span>
+      </span>
+    </a>
+    <ul class="items">
+      <li class data-id="story.$key">
+        <a href="story.userPhoto" data-link date-time="story.timestamp" data-type="photo" data-length="10"></a>
+      </li>
+    </ul>
+  </div>
+</div>
+      <div id="zuck-modal" class="with-cube with-effects" tabindex="1" style="display:none;">
+       <div id="zuck-modal-content"></div>
+      </div>
+      
+      
+      -->
+      <!--     COMENTARIO            <img  round [src]="spotted.userId.photo || 'assets/images/no-photo.jpg'">
+                    --> 
+                  <ion-row>
+  
+                    <ion-row >
+            <ion-col *ngFor="let spotted of spotteds | async ">
+                <ion-card >  
+                    <p></p>
+                   
+                    <ion-item >
+                        <button class="botaoLixo" *ngIf="spotted.userId  === chave" ion-button icon-right clear  (click)="removerSpotted(spotted)" >
+                            <ion-icon icon-right name="trash" >                 
+                            </ion-icon>
+                          </button>
+                      <ion-avatar item-start>
+                        <!--     COMENTARIO            <img  round [src]="spotted.userId.photo || 'assets/images/no-photo.jpg'">
+                        -->
+                        <img  round  [src]="spotted.userPhoto || 'assets/images/no-photo.jpg'">
+                      </ion-avatar>
+                    
+                      
+                        <h2 (click)="openPerfil(spotted.userId)">{{spotted.userNome}}</h2>
+                        <p>   {{spotted.timestamp | date : 'dd/MM/y H:mm'  }} 
+                        </p>
+                    </ion-item>
+                   
+                    
+                         <img   *ngIf ="spotted.photo" width="218" height="280" src="{{spotted.photo}}">
+                  <!--     COMENTARIO     || amTimeAgo        <img padding [src]="spotted.photo  ||  'assets/images/download.jpg'">
+                   -->        <img   *ngIf ="spotted.photo === '' " [src]=" 'assets/images/download.jpg'">
+                   <div class = "card_title"    (click)="irParaPageDetalhesSpotted(spotted)" *ngIf ="spotted.photo === '' ">
+                     {{spotted.materia | uppercase }} da {{spotted.curso | capitalize }} na {{spotted.faculdade | uppercase}}<br> Professor(a) - {{spotted.professor}}
+                  </div>
+                  <div class = "card_title"    (click)="irParaPageDetalhesSpotted(spotted)" *ngIf ="spotted.photo !== '' ">
+                      {{spotted.materia | uppercase }}<br> Professor(a) - {{spotted.professor}}
+                   </div>
+                 <br>
+                 <div class="card_subtitle" (click)="irParaPageDetalhesSpotted(spotted)" *ngIf ="spotted.photo === '' ">
+                <br>  {{spotted.conteudo}}<br>
+                   Nível de dificuldade da matéria : 
+                   {{spotted.dificuldadeMateria}}
+                   <br>
+                    Nível de dificuldade do Professor(a): 
+                    {{spotted.dificuldadeProfessor}}                   
+                  </div>
+                    <ion-card-content  (click)="irParaPageDetalhesSpotted(spotted)" *ngIf ="spotted.photo" >
+                      <p>{{spotted.conteudo}}</p>
+                    </ion-card-content>
+                  
+                    <ion-row>
+                      <ion-col>
+                        <button ion-button icon-left clear small (click)="deuLike(spotted,false)">
+                          <ion-icon name="thumbs-up"></ion-icon>
+                          <div  *ngIf="spotted.numLikes === 1 ; else customLikes">{{spotted.numLikes}} like</div>
+                          <ng-template #customLikes>
+                            <div>{{spotted.numLikes}} likes</div>
+                              </ng-template>
+                        </button>
+                       
+
+
+                      </ion-col>
+                      <ion-col>
+                        <button ion-button icon-left clear small>
+                          <ion-icon name="text"></ion-icon>
+                          <div *ngIf="spotted.numComentarios === 1 ; else customComentarios" (click)="irParaPageDetalhesSpotted(spotted)" >{{spotted.numComentarios}} comentário</div>
+                          <ng-template #customComentarios >
+                            <div (click)="irParaPageDetalhesSpotted(spotted)">{{spotted.numComentarios}} comentários</div>
+                              </ng-template>
+                        </button>
+                      </ion-col>
+                      <ion-col center text-center>
+                        <ion-note><strong>
+                        {{spotted.timestamp | date : 'dd/MM/y H:mm'  }}   </strong>
+                        </ion-note>
+                      </ion-col>
+                    </ion-row>
+                  </ion-card>
+                <!--  <ion-card>
+                    <ion-row>
+                      <ion-col center text-left>
+                          <ion-note>
+                          <ion-avatar item-start>
+                <img *ngIf="spotted.nomeLastComentario" width="10" height="10" round  [src]="spotted.lastComentarioFoto || 'assets/images/no-photo.jpg'">
+                <strong  *ngIf="spotted.nomeLastComentario" style="color:#00cec9; text-overflow: '..';                     ">{{spotted.nomeLastComentario}}</strong>     
+              </ion-avatar>
+                      </ion-note>
+                      </ion-col>
+                      <ion-col center text-right>
+                          <ion-note>
+                          <p *ngIf="spotted.lastComentario" style="color:#81ecec;    text-overflow: '..';
+                          ">{{spotted.lastComentario}}</p>
+                        </ion-note>
+                        </ion-col>
+                    </ion-row>
+                  </ion-card>
+                  -->
+            </ion-col>
+          </ion-row>
+        </ion-row>  
+      </ion-list>
+      <ion-infinite-scroll position="bottom" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+      <!-- Parallax Big Image -->
+      <div *ngSwitchCase = "'conversas'" background-size id="elastic-header" [ngStyle]="{'background-image': 'url(' + headerImage + ')'}">
+        <!--Parallax Header Top-->
+        <div parallax-header *ngSwitchCase = "'conversas'" >
+          <!--Parallax Subtitle -->
+          <h2 no-margin parallax-subtitle *ngSwitchCase = "'conversas'">a galera que você troca idéia</h2>
+          <!--Parallax Title -->
+          <h2 no-margin parallax-title *ngSwitchCase = "'conversas'">Conversas</h2>
+        </div>
+      </div>
+      <!--Content-->
+      <ion-grid no-padding *ngSwitchCase = "'conversas'">
+        <ion-row >
+          <ion-col col-12>
+            <ion-list no-margin>
+                          <!--eh aqui q vai o ngfor dos itens-->
+              <ion-item item-bcg border no-lines *ngFor = "let chat of chats | async" (click)="onChatOpen(chat)">
+                <!--Content Avatar-->
+                <ion-thumbnail item-start>
+                  <img [src]="chat.photo || 'assets/images/no-photo.jpg'" alt="legenda">
+                </ion-thumbnail>
+                <!--Content Title-->
+                <h2 no-margin item-title>    {{chat.title}}                </h2>
+                <!--Content Subtitle-->
+                <h3 item-subtitle text-wrap *ngIf="chat.lastMessage ; else customMessage">  
+                    {{chat.timestamp | date : 'dd/MM/y H:mm'}} - {{chat.lastMessage}} 
+                </h3>
+                <ng-template #customMessage>
+                    <h3 item-subtitle text-wrap>
+                      Não há mensagens
+                    </h3>
+                      </ng-template>
+                <!--Content Badge-->
+                <ion-badge class="badge-light" item-end>{{chat.status}}</ion-badge>
+              </ion-item>
+              <ion-item item-bcg border no-lines  (click)="openChatBot()">
+                  <!--Content Avatar-->
+                  <ion-thumbnail item-start>
+                    <img [src]="'assets/images/no-photo.jpg'" alt="legenda">
+                  </ion-thumbnail>
+                  <!--Content Title-->
+                  <h2 no-margin item-title>Eva</h2>
+                  <!--Content Subtitle-->
+                  <h3 item-subtitle text-wrap >  
+  Vem falar comigo
+                  </h3>
+                  
+                  <!--Content Badge-->
+                  <ion-badge class="badge-light" item-end>online</ion-badge>
+                </ion-item>
+                
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+  <div *ngSwitchCase = "'pessoas'" background-size id="elastic-header" [ngStyle]="{'background-image': 'url(' + headerImage + ')'}">
+        <!--Parallax Header Top-->
+        <div parallax-header *ngSwitchCase = "'pessoas'" >
+          <!--Parallax Subtitle -->
+          <h2 no-margin parallax-subtitle *ngSwitchCase = "'pessoas'">a galera que você pode conhecer</h2>
+          <!--Parallax Title -->
+          <h2 no-margin parallax-title *ngSwitchCase = "'pessoas'">Pessoas</h2>
+        </div>
+      </div>
+      <!--Content-->
+      <ion-grid no-padding *ngSwitchCase = "'pessoas'">
+        <ion-row >
+          <ion-col col-12>
+            <ion-list no-margin>
+              <ion-item item-bcg border no-lines *ngFor = "let user of users | async" (click)="onChatCreate(user)">
+                <!--Content Avatar-->
+                <ion-thumbnail item-start>
+                  <img [src]="user.photo || 'assets/images/no-photo.jpg'" alt="legenda">
+                </ion-thumbnail>
+                <!--Content Title-->
+                <h2 no-margin item-title>     {{user.name}}
+                  </h2>
+                  <h3 item-subtitle text-wrap >  
+                      {{user.curso}}
+                                      </h3>
+                                      <h3 item-subtitle text-wrap >  
+                                        {{user.faculdade}}
+                                                        </h3>
+                <!--Content Badge-->
+                <ion-badge class="badge-light" item-end>{{user.status}}</ion-badge>
+              </ion-item>  
+            </ion-list>
+            <ion-infinite-scroll position="bottom" (ionInfinite)="doInfinite($event)">
+              <ion-infinite-scroll-content loadingSpinner="bubbles"
+              loadingText="Carregando mais dados..."> </ion-infinite-scroll-content>
+        </ion-infinite-scroll>            
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+  
+</div>
+
+<ion-fab left bottom>
+    <button ion-fab color="primary"
+      (click)="openSpotted()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab> 
+
+</ion-content>

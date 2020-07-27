@@ -1,0 +1,51 @@
+page-stories-list {
+
+      ion-content {
+        background: linear-gradient(316deg, #19388d,  #1d3fb1, #461c8a, #871db8, #dd00f3, #dd00f3);
+        background-size: 250% 250%;
+        animation: bgtransition 30s linear infinite;
+        color: #fff !important;
+      }
+ 
+      .toolbar button {
+        color: #fff;
+      }
+    
+      @keyframes bgtransition {
+        0% {
+          background-position: 0% 0%
+        }
+        50% {
+          background-position: 100% 100%
+        }
+        100% {
+          background-position: 0% 0%
+        }
+      }
+    
+      h1 {
+        font-weight: bold;
+        font-size: 3rem;
+      }
+    
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 65vh;
+      }
+    
+      .signup-form {
+        width: 90%;
+        strong {
+          font-size: 1.8rem;
+        }
+        p {
+          font-weight: bold;
+          margin: 2px 0 0 0;
+        }
+      }
+    
+  
+}

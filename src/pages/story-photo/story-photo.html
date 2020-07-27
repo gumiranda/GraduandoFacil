@@ -1,0 +1,113 @@
+<!-- NO BOUNCE PARA QUE A IMAGEM NÃO FIQUE FLUTUANDO -->
+<ion-content no-bounce>
+
+  <!-- MODO CAMERA -->
+  <div *ngIf="mode == 'camera'">
+
+
+   
+
+    <ion-fab left top small >
+      <button ion-fab color="danger">
+        <ion-icon name="ios-settings"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab left bottom small (click)="upFromGallery(0)">
+      <button ion-fab color="danger" >
+        <ion-icon name="md-image"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab right bottom small (click)="mudaCamera()">
+      <button ion-fab color="danger" >
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-fab>
+
+
+
+    <ion-fab right bottom small >
+      <button (click)="refresh()" ion-fab color="danger">
+        <ion-icon name="fa-refresh"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab center bottom large >
+      <button (click)="takePicture()" ion-fab color="dark">
+        <ion-icon name=""></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+
+  <!-- MODO PHOTO -->
+  <div *ngIf="mode == 'photo'">
+    <ion-fab right bottom small>
+      <button ion-fab color="light" (click)="upload()">
+        <ion-icon name="md-arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+
+    <ion-fab left bottom small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name="md-arrow-down"></ion-icon>
+        Save
+      </button>
+    </ion-fab>
+
+    <ion-fab left top small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name=""></ion-icon>
+        CANCEL
+      </button>
+    </ion-fab>
+
+    <ion-fab right top small >
+      <button ion-fab color="danger" (click)="canvas.initModeBrush(); modeBrush()">
+        <ion-icon name="brush"></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+
+  <!-- MODO BRUSH -->
+  <div *ngIf="mode == 'brush'">
+    <ion-fab left top small >
+      <button ion-fab color="danger" (click)="back()">
+        <ion-icon name=""></ion-icon>
+         Undo
+      </button>
+    </ion-fab>
+
+    <ion-fab right="" top small >
+      <button ion-fab color="danger" (click)="done()" style="font-weight: bold">
+        <ion-icon name=""></ion-icon>
+        Done
+      </button>
+    </ion-fab>
+  </div>
+  <div *ngIf="mode == 'gallery'">
+      <ion-fab right bottom >
+          <button ion-fab color="danger" (click)="upload()">
+            <ion-icon name="md-cloud-upload"></ion-icon>
+          </button>
+        </ion-fab>
+        <ion-fab center middle large >
+            <img  [src]="srcPhoto" *ngIf="srcPhoto" />
+          </ion-fab>
+</div>
+
+  <!-- SLIDES COM AS CORES -->
+  <ion-slides class="slide-class" loop="false" slidesPerView="10" *ngIf="mode == 'brush'">
+    <ion-slide *ngFor="let colour of availableColours">
+      <button clear ion-button (click)="canvas.changeColour(colour)">
+        <ion-icon [style.color]="colour" name="ios-cog-outline" class="image-icons"></ion-icon>
+      </button>
+    </ion-slide>
+
+  </ion-slides>
+
+  <!-- COMPONENTE COM A FOTO-->
+  <canvas-draw *ngIf="srcPhoto"  src="data:image/jpeg;base64,{{srcPhoto}}" #myCanvasDraw>
+  </canvas-draw>
+
+</ion-content>

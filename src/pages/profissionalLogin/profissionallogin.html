@@ -1,0 +1,34 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+    <ion-navbar transparent>
+        <h1 style="color:white;">Solicitações de Matéria</h1>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <br>
+    <div class="flex-container">
+   <div class="signup-form animated fadeInRight"  >
+      <ion-list *ngFor="let solicitacao of solicitacoes | async ">
+      <hr>    
+          <h3>Curso : {{solicitacao.usuarioCurso}}</h3>
+          <p>Faculdade : {{solicitacao.usuarioFaculdade}}</p> 
+          <h4>Matéria : {{solicitacao.materia}}</h4>
+         <p>Professor(a) : {{solicitacao.professor}}</p>
+        <br>  <p>   {{solicitacao.timestamp | date : 'dd/MM/y H:mm'  }} 
+          </p>
+          <button ion-button (tap)="openSpotted(solicitacao.$key,solicitacao.materia,solicitacao.professor)">
+              <ion-icon name="star"></ion-icon>
+            AVALIAR
+          </button>
+  <hr>
+          </ion-list>
+     
+    </div>
+  </div>
+
+  </ion-content>

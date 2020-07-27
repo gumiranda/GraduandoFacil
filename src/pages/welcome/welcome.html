@@ -1,0 +1,59 @@
+<ion-content padding class="transparent-header">
+    <ion-header>
+      <ion-navbar>
+      </ion-navbar>
+    </ion-header>
+    <img class="logo" src="assets/img/logo/gradufacil2.png" />
+    
+    <div padding>
+        <form [formGroup]="signinForm" (ngSubmit) = "onSubmit(); $event.preventDefault()">
+            <div class="flex-container">
+              <div class="login-form animated fadeInRight">
+                <ion-item margin-bottom class="input-login">
+                  <ion-input  placeholder="Email" type="text" formControlName = "email"></ion-input>
+                </ion-item>
+                <ion-item class="input-login">
+                  <ion-input  placeholder="Senha" type="password" formControlName = "password"></ion-input>
+                </ion-item>
+              </div>
+          
+                    <button ion-button block outline class="login-button"  type = "submit" [disabled]="signinForm.invalid"  color="light" class="login-button">Entrar</button>
+            </div>
+           
+          
+          
+          
+          </form>
+    </div>
+    <div class="strike">
+      <span>OU</span>
+    </div>
+    <button ion-button block clear (click)="loginFace()" color="light" class="login-button"><ion-icon name="logo-facebook"></ion-icon> Login com Facebook</button>
+
+<!--    <div *ngIf="isLoggedIn; else facebookLogin">
+      <h2>Hi, {{users.name}} ({{users.email}})</h2>
+      <p>
+        Gender: {{users.gender}}
+      </p>
+      <p>
+        <img src="{{users.picture.data.url}}" width="100" alt="{{users.name}}" />
+      </p>
+      <p>
+        <button ion-button icon-right (click)="logout()">
+          Logout
+        </button>
+      </p>
+    </div>
+    <ng-template #facebookLogin>
+      <button ion-button block clear (click)="loginFace()" color="light" class="login-button"><ion-icon name="logo-facebook"></ion-icon> Login with Facebook</button>
+    </ng-template>
+  --> 
+  
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar class="footer">
+      <div (click)="irCadastro()">
+        <span>Ainda não tem conta? <strong>Cadastre-se aqui</strong>.</span>
+      </div>
+    </ion-toolbar>
+  </ion-footer>

@@ -1,0 +1,60 @@
+page-botchat {
+    overflow: inherit;
+           text-overflow:inherit;
+           white-space:normal;
+    ion-list{     
+           overflow: inherit;
+           text-overflow:inherit;
+           white-space:normal;
+    .innerMessage{
+        display: inline-block;
+        background-color: #488aff;
+        border-radius: 12px;
+        padding: 10px;
+        text-indent: 0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+    }
+      .hide{
+        display: none;
+        text-indent: 0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .h2{
+        font-size : 15px;
+        text-indent: 0;
+        margin-top: 0px;
+        overflow: inherit;
+           text-overflow:inherit;
+           white-space:normal;
+      }
+      .message{
+        margin: 0px;
+        color:white;
+        text-indent: 0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .special .innerMessage{
+        background-color: #32db64;
+        float: right;
+        text-indent: 0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+      .message:after{
+        content:'';
+        display: block;
+        clear : both;
+        text-indent: 0;
+        overflow: inherit;
+        text-overflow:inherit;
+        white-space:normal;
+      }
+    }   
+}

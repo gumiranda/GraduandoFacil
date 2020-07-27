@@ -1,0 +1,69 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+    <ion-navbar transparent>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+    <div class="flex-container">
+      <h1>Criar conta</h1>
+<form [formGroup]="signupForm" *ngIf="usuarioFace === undefined; else facebookLogin" (ngSubmit) = "onSubmit(); $event.preventDefault()">
+      <div class="signup-form animated fadeInRight"  >
+                <strong>Qual é o nome?</strong>
+        <ion-item class="input-signup"  >
+          <ion-input type="text" placeholder = "Nome" formControlName = "name"></ion-input>
+        </ion-item> 
+        <p margin-bottom></p>
+        <strong>Qual curso você faz?</strong>
+        <ion-item class="input-signup">
+          <ion-input type="text" placeholder = "Curso" formControlName = "curso"></ion-input>
+        </ion-item>
+        <p margin-bottom></p>
+        <strong>Faculdade</strong>
+        <ion-item class="input-signup">
+          <ion-input type="text" placeholder = "Faculdade" formControlName = "faculdade"></ion-input>
+        </ion-item>
+        <p margin-bottom></p>
+        <strong>Email</strong>
+        <ion-item class="input-signup">
+          <ion-input type="email" placeholder = "Email" formControlName = "email"></ion-input>
+        </ion-item>
+        <p margin-bottom>Poderá ser necessário validar este e-mail.</p>
+        <strong>Crie uma nova senha</strong>
+        <ion-item class="input-signup">
+          <ion-input type="password" placeholder = "Senha" formControlName = "password"></ion-input>
+        </ion-item>
+        <p>Escolha pelo menos oito caracteres.</p>
+        <br>
+        <p style="width:100%; margin-left:7%;"(click)="openTermos()">Li e concordo com os termos e condições
+            <ion-checkbox    formControlName = "termos"></ion-checkbox>
+        </p>
+       
+      </div>
+      
+      <br>
+      <div class="button">
+        <button ion-button round class="signup-button" 
+        type = "submit" [disabled]="signupForm.invalid" >Cadastrar</button>
+      </div>
+    </form>
+    <ng-template #facebookLogin>
+        <h2>{{usuarioFace.name}}</h2>
+        <h3>{{usuarioFace.email}}</h3>
+        <p>
+            <img src="{{usuarioFace.picture.data.url}}" width="100" alt="{{usuarioFace.name}}" />
+          </p>
+          <button ion-button block outline (click)="LoginFacebook()" color="light" class="login-button">Cadastrar</button>
+
+        </ng-template>
+    </div>
+
+
+
+  </ion-content>

@@ -1,0 +1,68 @@
+<!--- Theme Parallax - News -->
+<ion-header header-ios>
+  <ion-navbar transparent >
+  </ion-navbar>
+</ion-header>
+<!--- Header Big Image-->
+<ion-content elastic-header>
+  <ion-item no-lines background-size id="elastic-header" [ngStyle]="{'background-image': 'url(' + headerImage + ')'}">
+    <div title-block *ngIf="data != null">
+      <!--- Category -->
+      <span new-category></span>
+      <!--- Parallax Title -->
+      <h1 parallax-title text-wrap>Matéria - {{data.materia}} <br> </h1>     
+       <h2 parallax-title text-wrap>Professor(a) - {{data.professor}}</h2>
+      <h2 parallax-title text-wrap>by {{data.userNome}}</h2>
+
+    </div>
+  </ion-item>
+  <ion-item *ngIf="data != null">
+      <!--- Avatar -->
+      <ion-avatar item-start>
+        <img [src]=" data.userPhoto || 'assets/images/no-photo.jpg'" />
+      </ion-avatar>
+      <h1 item-title (tap)="openPerfil(data.userId)">{{data.userNome}}</h1>
+      <div #stories id="stories" padding=""></div>
+
+
+      <!-- Content Title-->
+      <!-- Content Description-->
+      <p parallax-description text-wrap>                         <img   *ngIf ="data.photo" width="218" height="300" src="{{data.photo}}">
+        <br>{{data.conteudo}}<br>Dificuldade da matéria - {{data.dificuldadeMateria}}<br>Dificuldade do professor(a) - {{data.dificuldadeProfessor}}</p>
+      <!--- Button Share-->
+      <button item-end ion-button color="primary" button-action-shit >
+        <ion-icon (tap)="apresentarActionSheetSpotted(data)" (click)="apresentarActionSheetSpotted(data)"  name="more"></ion-icon>
+      </button>
+  </ion-item>
+  <strong text-align=center>-</strong>
+
+  <ion-list  *ngFor="let c of comentarios | async" >
+  
+    <ion-item >
+          <!--- Avatar -->
+          <ion-avatar item-start>
+            <img [src]=" c.photo || 'assets/images/no-photo.jpg'" />
+          </ion-avatar>
+          <h1 (tap)="openPerfil(c.userId)" item-title>{{c.apelido}}</h1>
+    
+          <!-- Content Title-->
+          <!-- Content Description-->
+          <p parallax-description text-wrap>{{c.text}}</p>
+          <!--- Button Share-->
+          <button item-end ion-button color="primary" button-action-shit >
+            <ion-icon (tap)="apresentarActionSheetComentario(c)" (click)="apresentarActionSheetComentario(c)" name="more"></ion-icon>
+          </button>
+      </ion-item>
+    </ion-list>
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+      <ion-item no-lines>
+        <ion-input type="text" placeholder="Digite seu comentário" (keyup.enter)="comentar(newComentario); newComentario = ''"  [(ngModel)]="newComentario"></ion-input>
+        <button ion-button item-right  (click)="comentar(newComentario); newComentario = ''" >
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-toolbar>
+  </ion-footer>

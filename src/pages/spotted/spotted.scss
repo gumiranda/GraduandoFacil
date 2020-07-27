@@ -1,0 +1,68 @@
+page-spotted {
+    ion-content {
+      background: linear-gradient(316deg, #ADEBFB,  #6ED3ED, #54B2CA, #317F92,#418C9E , #0A5568);
+      background-size: 250% 250%;
+      margin:0 auto;
+      width:100%;
+      animation: bgtransition 30s linear infinite;
+      color: #fff !important;
+    }
+  
+    .toolbar button {
+      color: #fff;
+    }
+  
+    @keyframes bgtransition {
+      0% {
+        background-position: 0% 0%
+      }
+      50% {
+        background-position: 100% 100%
+      }
+      100% {
+        background-position: 0% 0%
+      }
+    }
+  
+    h1 {
+      font-weight: bold;
+      font-size: 3rem;
+    }
+  
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      margin-right:10%;
+      margin-left:20%;
+      justify-content: space-between;
+      align-items: center;
+      height: 65vh;
+    }
+  
+    .signup-form {
+      width: 80%;
+      .input-signup {
+        margin-top: 5px;
+      }
+      strong {
+        font-size: 1.8rem;
+      }
+      p {
+        font-weight: bold;
+        margin: 2px 0 0 0;
+      }
+    }
+  
+    .button {
+      .signup-button {
+        padding: 7px 44px;
+        background-color: rgba(#fff, .7);
+        color: rgba(#333, .7);
+        &.activated {
+          background-color: rgba(#fff, 1) !important;
+        }
+      }
+    }
+  
+  }
+  
